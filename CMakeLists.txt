@@ -13,10 +13,11 @@ include_directories(include)
 # Add source files
 set(SOURCES
     src/main.cpp
+    src/text_processor.cpp
 )
 
 # Create executable
-add_executable(word_counter ${SOURCES})
+add_executable(program ${SOURCES})
 
 # Installation rules
-install(TARGETS word_counter DESTINATION bin)
+install(TARGETS program DESTINATION bin)
