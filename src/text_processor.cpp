@@ -211,3 +211,4 @@ void countDomains(const std::map<std::string, std::vector<int>> &domainOccurrenc
     }
     outFile.close();
 }
+
