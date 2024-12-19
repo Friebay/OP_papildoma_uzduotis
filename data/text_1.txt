@@ -1,0 +1,72 @@
+Welcome to the world of the internet! Here are some resources you might find useful:
+
+    To search for anything, visit Google: https://www.google.com
+    For tech news and updates, check out TechCrunch: https://techcrunch.com
+    Want to learn to code? Try freeCodeCamp: https://www.freecodecamp.org
+    If you're into design, explore Dribbble: https://dribbble.com
+    Shopping online? Visit Amazon: https://www.amazon.com
+
+Educational Resources
+
+Here are some fantastic websites for online education:
+
+    Khan Academy: https://www.khanacademy.org
+    edX: https://www.edx.org
+    Coursera: https://www.coursera.org
+
+For students in Europe, check out the European Commission's Education Portal: https://ec.europa.eu/education
+News and Information
+
+Stay informed with global news:
+
+    BBC News: https://www.bbc.co.uk/news
+    The New York Times: https://www.nytimes.com
+    Al Jazeera: https://www.aljazeera.com
+
+Looking for a local Lithuanian source? Visit 15min: https://www.15min.lt
+Social Media Platforms
+
+Connect with friends and family:
+
+    Facebook: https://www.facebook.com
+    Instagram: https://www.instagram.com
+    Twitter: https://twitter.com
+
+For professionals, there’s LinkedIn: https://www.linkedin.com
+Entertainment and Streaming
+
+Relax with your favorite shows and music:
+
+    YouTube: https://www.youtube.com
+    Netflix: https://www.netflix.com
+    Spotify: https://www.spotify.com
+
+Want to discover open-source movies? Try Archive.org: https://archive.org/details/movies
+Developer Tools and Resources
+
+Here are some developer tools:
+
+    Git repository hosting: GitHub: https://github.com
+    Cloud hosting services: Heroku: https://www.heroku.com
+    Search documentation with MDN Web Docs: https://developer.mozilla.org
+
+Other Useful Sites
+
+Need weather updates? Visit Weather.com: https://weather.com
+For language translation, check Google Translate: https://translate.google.com
+
+If you're interested in books, browse Project Gutenberg: https://www.gutenberg.org
+
+Finally, if you’re building a website, try the Tailwind CSS website: https://tailwindcss.com
+Miscellaneous URLs
+
+Here are some random URLs for your testing:
+
+    http://example.com
+    https://subdomain.example.org
+    https://www.example.net/path/to/resource
+    https://example.com:8080/query?search=test
+    ftp://files.example.com
+    https://localhost:3000
+
+Have fun exploring the internet! Let me know if you need more URLs to test.

@@ -1,65 +1,97 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <filesystem>
+#include <cctype>
 #include <map>
-#include <regex>
-#include <set>
+#include <vector>
 #include <algorithm>
+#include <sstream>
 
-// Function to count words in a file and output words that appear more than once
-void countWords(const std::string& inputFilePath, const std::string& outputFilePath) {
-    std::ifstream inputFile(inputFilePath);
-    std::ofstream outputFile(outputFilePath);
-    if (!inputFile.is_open()) {
-        std::cerr << "Failed to open input file." << std::endl;
-        return;
-    }
-    if (!outputFile.is_open()) {
-        std::cerr << "Failed to open output file." << std::endl;
-        return;
-    }
+namespace fs = std::filesystem;
 
+void createDirectoryIfNotExists(const fs::path& path) {
+    if (!fs::exists(path)) {
+        fs::create_directory(path);
+    }
+}
+
+std::string removePunctuation(const std::string& text) {
+    std::string result;
+    for (char c : text) {
+        if (!std::ispunct(c) || c == '\n') {
+            result += c;
+        }
+    }
+    return result;
+}
+
+std::map<std::string, int> countWords(const std::string& text) {
     std::map<std::string, int> wordCount;
-    std::string line;
-    std::regex wordRegex(R"(\b\w+\b)", std::regex::icase);
-
-    while (std::getline(inputFile, line)) {
-        std::sregex_iterator wordsBegin = std::sregex_iterator(line.begin(), line.end(), wordRegex);
-        std::sregex_iterator wordsEnd = std::sregex_iterator();
-
-        for (std::sregex_iterator i = wordsBegin; i != wordsEnd; ++i) {
-            std::string word = (*i).str();
-            std::transform(word.begin(), word.end(), word.begin(), ::tolower);
-            wordCount[word]++;
-        }
+    std::istringstream stream(text);
+    std::string word;
+    while (stream >> word) {
+        ++wordCount[word];
     }
+    return wordCount;
+}
 
-    for (const auto& pair : wordCount) {
-        if (pair.second > 1) {
-            outputFile << pair.first << ": " << pair.second << std::endl;
-        }
-    }
-
-    inputFile.close();
-    outputFile.close();
+bool compareByValue(const std::pair<std::string, int>& a, const std::pair<std::string, int>& b) {
+    return a.second > b.second;
 }
 
 int main() {
-    std::string inputFilePath;
-    std::string outputFilePath;
+    try {
+        // Create output directory if it doesn't exist
+        fs::path outputDir = "output";
+        createDirectoryIfNotExists(outputDir);
 
-    // Simple console GUI
-    std::cout << "Word Counter Program" << std::endl;
-    std::cout << "====================" << std::endl;
-    std::cout << "Enter the path to the input file: ";
-    std::getline(std::cin, inputFilePath);
-    std::cout << "Enter the path to the output file: ";
-    std::getline(std::cin, outputFilePath);
+        // Read and process each file from data directory
+        fs::path dataDir = "data";
+        for (const auto& entry : fs::directory_iterator(dataDir)) {
+            if (entry.path().extension() == ".txt") {
+                // Read input file
+                std::ifstream inFile(entry.path());
+                if (!inFile) {
+                    throw std::runtime_error("Cannot open input file: " + entry.path().string());
+                }
 
-    // Call the function to count words
-    countWords(inputFilePath, outputFilePath);
+                std::string content((std::istreambuf_iterator<char>(inFile)),
+                                  std::istreambuf_iterator<char>());
+                inFile.close();
 
-    std::cout << "Word counting completed. Check the output file for results." << std::endl;
+                // Remove punctuation
+                std::string cleanedContent = removePunctuation(content);
+
+                // Count words
+                std::map<std::string, int> wordCount = countWords(cleanedContent);
+
+                // Sort words by frequency
+                std::vector<std::pair<std::string, int>> sortedWords(wordCount.begin(), wordCount.end());
+                std::sort(sortedWords.begin(), sortedWords.end(), compareByValue);
+
+                // Write to output file
+                fs::path outPath = outputDir / ("cleaned_" + entry.path().filename().string());
+                std::ofstream outFile(outPath);
+                if (!outFile) {
+                    throw std::runtime_error("Cannot create output file: " + outPath.string());
+                }
+                for (const auto& [word, count] : sortedWords) {
+                    outFile << word << ": " << count << std::endl;
+                }
+                outFile.close();
+
+                std::cout << "Processed: " << entry.path().filename() << " -> " 
+                         << outPath.filename() << std::endl;
+            }
+        }
+
+        std::cout << "All files processed successfully!" << std::endl;
+    }
+    catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+        return 1;
+    }
 
     return 0;
 }
