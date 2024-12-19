@@ -120,12 +120,12 @@ std::map<std::string, std::vector<int>> trackDomainOccurrences(const std::string
     
     while (std::getline(stream, line)) {
         ++lineNumber;
-        std::cout << "Processing line " << lineNumber << ":\n" << line << "\n";
+        // std::cout << "Processing line " << lineNumber << ":\n" << line << "\n";
         
         std::sregex_iterator begin(line.begin(), line.end(), domainRegex), end;
         
         if (begin == end) {
-            std::cout << "No matches found in this line.\n";
+            // std::cout << "No matches found in this line.\n";
         }
         
         for (auto it = begin; it != end; ++it) {
@@ -133,16 +133,17 @@ std::map<std::string, std::vector<int>> trackDomainOccurrences(const std::string
             std::string fullMatch = match[0];
             std::string domain = match[1];
             
-            std::cout << "Found match:\n";
-            std::cout << "  Full match: " << fullMatch << "\n";
+            /* std::cout << "Found match:\n";
+             std::cout << "  Full match: " << fullMatch << "\n";
             std::cout << "  Domain: " << domain << "\n";
-            
+            */
+
             domainOccurrences[domain].push_back(lineNumber);
         }
-        std::cout << "\n";
+        // std::cout << "\n";
     }
     
-    std::cout << "\nFinal domain occurrences:\n";
+    /* std::cout << "\nFinal domain occurrences:\n";
     for (const auto& [domain, lines] : domainOccurrences) {
         std::cout << domain << ": ";
         for (int line : lines) {
@@ -150,8 +151,37 @@ std::map<std::string, std::vector<int>> trackDomainOccurrences(const std::string
         }
         std::cout << "\n";
     }
+    */
     
     return domainOccurrences;
+}
+// Function to count domains and write the result to an output file
+void countDomains(const std::map<std::string, std::vector<int>>& domainOccurrences, const fs::path& outPath) {
+    // Create a map of domain counts
+    std::map<std::string, int> domainCount;
+    for (const auto& [domain, lines] : domainOccurrences) {
+        domainCount[domain] = lines.size();
+    }
+
+    // Sort domains by count (descending) and alphabetically for ties
+    std::vector<std::pair<std::string, int>> sortedDomains(domainCount.begin(), domainCount.end());
+    std::sort(sortedDomains.begin(), sortedDomains.end(),
+        [](const auto& a, const auto& b) {
+            if (a.second != b.second) {
+                return a.second > b.second;
+            }
+            return a.first < b.first;
+        });
+
+    // Write to output file
+    std::ofstream outFile(outPath);
+    if (!outFile) {
+        throw std::runtime_error("Cannot create output file: " + outPath.string());
+    }
+    for (const auto& [domain, count] : sortedDomains) {
+        outFile << domain << ": " << count << std::endl;
+    }
+    outFile.close();
 }
 
 int main() {
@@ -165,6 +195,7 @@ int main() {
         std::cout << "1. Count words\n";
         std::cout << "2. Generate cross-reference table\n";
         std::cout << "3. Extract and track internet domains\n";
+        std::cout << "4. Count domain occurrences\n";  // New option
         int choice;
         std::cin >> choice;
 
@@ -215,16 +246,19 @@ int main() {
             // Generate cross-reference table and write to output file
             fs::path outPath = outputDir / ("xref_" + fileName);
             generateCrossReferenceTable(wordOccurrences, outPath);
-        } else if (choice == 3) {
-            std::cout << "\nProcessing file for domains: " << fileName << "\n\n";
-            
+        } else if (choice == 3 || choice == 4) {  // Handle both domain options
             // Track domain occurrences without removing punctuation
             std::map<std::string, std::vector<int>> domainOccurrences = trackDomainOccurrences(content);
-            
-            // Generate cross-reference table for domains and write to output file
-            fs::path outPath = outputDir / ("domain_xref_" + fileName);
-            generateCrossReferenceTable(domainOccurrences, outPath);
-            
+
+            if (choice == 3) {
+                // Generate cross-reference table for domains
+                fs::path outPath = outputDir / ("domain_xref_" + fileName);
+                generateCrossReferenceTable(domainOccurrences, outPath);
+            } else {
+                // Count domain occurrences
+                fs::path outPath = outputDir / ("domain_count_" + fileName);
+                countDomains(domainOccurrences, outPath);
+            }
         } else {
             std::cerr << "Invalid choice!" << std::endl;
             return 1;
