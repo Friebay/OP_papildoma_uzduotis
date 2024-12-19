@@ -1,0 +1,419 @@
+{{short description|none}}
+{{pp-semi-indef}}
+{{see also|List of social platforms with at least 100 million active users}}
+This is a '''list of most-visited websites''' worldwide {{as of|2024|11|df=us|lc=y|post=,}} along with their change in ranking compared to the previous month.
+
+== List ==
+{{Dynamic list}}
+Data is compiled from [[Similarweb]] and [[Semrush]] {{as of|2024|11|df=us|lc=y}}. This list does not factor subpages that use the same domain as the parent site.<ref>{{Cite web |title=Top Websites Ranking |url=https://www.similarweb.com/top-websites/ |access-date=November 10, 2024 |website=[[Similarweb]]}}</ref><ref>{{Cite web |title=Top websites |url=https://www.semrush.com/trending-websites/global/all |access-date=October 19, 2024 |website=[[Semrush]]}}</ref>
+
+{{row hover highlight}}
+{{sticky header}}
+{{table alignment}}
+{{sort under}}
+{| class="wikitable sortable sticky-header-multi sort-under mw-datatable plainrowheaders defaultcenter col7left"
+! scope="col" rowspan=2 | Website
+! scope="col" rowspan=2 | Domain name
+! scope="col" colspan=2 | Ranking
+! scope="col" rowspan=2 | Type
+! scope="col" rowspan=2 | Company /<br />[[Nonprofit organization]]
+! scope="col" rowspan=2 | Country
+|-
+! scope="col" | Similarweb<br>(November 2024)
+! scope="col" | Semrush<br>(November 2024)
+|-
+| scope="row" | [[Google Search]]
+| [https://google.com google.com]
+| 1 ({{steady}})
+| 1 ({{steady}})
+| Search Engine 
+| [[Google]]
+| {{flagu|United States}}
+|-
+| scope="row" | [[YouTube]]
+| [https://youtube.com youtube.com]
+| 2 ({{steady}})
+| 2 ({{steady}})
+| Video-sharing platform 
+| [[Google]]
+| {{flagu|United States}}
+|-
+| scope="row" | [[Facebook]]
+| [https://facebook.com facebook.com]
+| 3 ({{steady}})
+| 3 ({{steady}})
+| Social Media Networks 
+| [[Meta Platforms|Meta]]
+| {{flagu|United States}}
+|-
+| scope="row" | [[Instagram]]
+| [https://instagram.com instagram.com]
+| 4 ({{steady}})
+| 5 ({{steady}})
+| Social Media Networks 
+| [[Meta Platforms|Meta]]
+| {{flagu|United States}}
+|-
+| scope="row" | [[Whatsapp]]
+| [https://whatsapp.com whatsapp.com]
+| 5 ({{steady}})
+| 12 ({{decrease}})
+| Social Media Networks 
+| [[Meta Platforms|Meta]]
+| {{flagu|United States}}
+|-
+| scope="row" | [[Twitter|X]]
+| [https://x.com x.com]
+| 6 ({{steady}})
+| 17 ({{decrease}})7
+| Social network 
+| [[X Corp.]]
+| {{flagu|United States}}
+|-
+| scope="row" | [[Wikipedia]]
+| [https://wikipedia.org wikipedia.org]
+| 7 ({{steady}})
+| 4 ({{steady}})
+| Dictionaries and Encyclopedias 
+| [[Wikimedia Foundation]]
+| {{flagu|United States}}
+|-
+| scope="row" | [[ChatGPT]]
+| [https://chatgpt.com chatgpt.com]
+| 8 ({{steady}})
+| 9 ({{increase}})
+| Programming and Developer Software 
+| [[OpenAI]]
+| {{flagu|United States}}
+|-
+| scope="row" | [[Reddit]]
+| [https://reddit.com reddit.com]
+| 9 ({{steady}})
+| 6 ({{steady}})
+| Social Media Networks 
+| [[Reddit]]
+| {{flagu|United States}}
+|-
+| scope="row" | [[Yahoo]]
+| [https://yahoo.com yahoo.com]
+| 10 ({{steady}})
+| 13 ({{decrease}})
+| News & Media Publishers 
+| [[Yahoo! Inc. (2017–present)|Yahoo!]]
+| {{flagu|United States}}
+|-
+| scope="row" | [[Yahoo! Japan|Yahoo JP]]
+| [https://yahoo.co.jp yahoo.co.jp]
+| 11 ({{steady}})
+| 19 ({{steady}})
+| News & Media Publishers 
+| [[LY Corporation]]
+| {{flagu|Japan}}
+|-
+| scope="row" | [[Amazon (company)|Amazon]]
+| [https://amazon.com amazon.com]
+| 12 ({{increase}})1
+| 13 ({{steady}})
+| Marketplace 
+| [[Amazon (company)|Amazon]]
+| {{flagu|United States}}
+|-
+| scope="row" | [[Yandex]]
+| [https://yandex.ru yandex.ru]
+| 13 ({{decrease}})1
+| 11 ({{increase}})
+| Search Engines 
+| [[Yandex]]
+| {{flagu|Russia}}
+|-
+| scope="row" | [[Baidu]]
+| [https://baidu.com baidu.com]
+| 14 ({{steady}})
+| N/A
+| Search Engines 
+| [[Baidu]]
+| {{flagu|China}}
+|-
+| scope="row" | [[TikTok]]
+| [https://tiktok.com tiktok.com]
+| 15 ({{steady}})
+| 20 ({{decrease}})3
+| Social Media Networks 
+| [[ByteDance]]
+| {{flagu|China}}
+|-
+| scope="row" | [[Netflix]]
+| [https://netflix.com netflix.com]
+| 16 ({{increase}})1
+| 19 ({{decrease}})9
+| Streaming & Online TV 
+| [[Netflix]]
+| {{flagu|United States}}
+|-
+| scope="row" | [[MSN|Microsoft Online]]
+| [https://microsoftonline.com microsoftonline.com]
+| 17 ({{decrease}})1
+| 18 ({{increase}})10
+| Programming and Developer Software 
+| [[Microsoft]]
+| {{flagu|United States}}
+|-
+| scope="row" | [[Microsoft Bing|Bing]]
+| [https://bing.com bing.com]
+| 18 ({{steady}})
+| 8 ({{increase}})
+| Search Engines 
+| [[Microsoft]]
+| {{flagu|United States}}
+|-
+| scope="row" | [[Pornhub]]
+| pornhub.com
+| 19 ({{increase}})1
+| 7 ({{steady}})
+| Adult 
+| [[Aylo]]
+| {{flagu|Canada}}
+|-
+| scope="row" | [[LinkedIn]]
+| [https://linkedin.com linkedin.com]
+| 20 ({{decrease}})1
+| 27 ({{decrease}})2
+| Social Media Networks 
+| [[Microsoft]]
+| {{flagu|United States}}
+|-
+| scope="row" | [[Outlook.com |Live]]
+| [https://live.com live.com]
+| 21 ({{increase}})1
+| 22 ({{increase}})
+| Email 
+| [[Microsoft]]
+| {{flagu|United States}}
+|-
+| scope="row" | [[Naver]]
+| [https://naver.com naver.com]
+| 22 ({{increase}})1
+| 30 ({{decrease}})30
+| News & Media Publishers 
+| [[Naver Corporation]]
+| {{flagu|South Korea}}
+|-
+| scope="row" | [[Zen News]]
+| [https://dzen.ru dzen.ru]
+| 23 ({{increase}})1
+| 49 ({{increase}})16
+| News & Media Publishers 
+| [[Zen News]]
+| {{flagu|Russia}}
+|-
+| scope="row" | [[Microsoft 365]]
+| [https://office.com office.com]
+| 24 ({{decrease}})3
+| 28 ({{increase}})2
+| Programming and Developer Software 
+| [[Microsoft]]
+| {{flagu|United States}}
+|-
+| scope="row" | [[Microsoft]]
+| [https://microsoft.com microsoft.com]
+| 25 ({{steady}})
+| 24 ({{increase}})3
+| Programming and Developer Software 
+| [[Microsoft]]
+| {{flagu|United States}}
+|-
+| scope="row" | [[xVideos]]
+| xvideos.com
+| 26 ({{increase}})1
+| 15 ({{decrease}})
+| Adult 
+| [[WGCZ Holding]]
+| {{flagu|France}}
+|-
+| scope="row" | [[Pinterest]]
+| [https://pinterest.com pinterest.com]
+| 27 ({{increase}})1
+| 33 ({{increase}})4
+| Social Media Networks 
+| [[Pinterest]]
+| {{flagu|United States}}
+|-
+| scope="row" | [[Bilibili]]
+| [https://bilibili.com bilibili.com]
+| 28 ({{decrease}})2
+| N/A
+| Social Media Networks 
+| [[Bilibili]]
+| {{flagu|China}}
+|-
+| scope="row" | [[Twitch (service)|Twitch]]
+| [https://twitch.tv twitch.tv]
+| 29 ({{increase}})3
+| 26 ({{steady}})
+| Video Games Consoles and Accessories 
+| [[Amazon (company)|Amazon]]
+| {{flagu|United States}}
+|-
+| scope="row" | [[VK (company)|VK]]
+| [https://vk.com vk.com]
+| 30 ({{decrease}})1
+| 29 ({{increase}})
+| Social Media Networks 
+| [[VK (company)|VK]]
+| {{flagu|Russia}}
+|-
+| scope="row" | [[Yahoo! News|Yahoo! News Japan]]
+| [https://news.yahoo.co.jp news.yahoo.co.jp]
+| 31 ({{steady}})
+| 21 ({{decrease}})2
+| News & Media Publishers 
+| [[Yahoo! Inc. (2017–present)|Yahoo!]]
+| {{flagu|United States}}
+|-
+| scope="row" | [[xHamster]]
+| xhamster.com
+| 32 ({{increase}})2
+| 34 ({{decrease}})3
+| Adult 
+| [[Hammy Media Ltd]]<ref>{{Cite web |last=Woods |first=Ben |date=2016-03-03 |title=The (almost) invisible men and women behind the world's largest porn sites |url=https://thenextweb.com/news/the-almost-invisible-men-and-women-behind-the-worlds-largest-porn-sites |access-date=2024-12-12 |website=TNW {{!}} Insider |language=en}}</ref>
+| {{flagu|Cyprus}}
+|-
+| scope="row" | [[Mail.Ru]]
+| [https://mail.ru mail.ru]
+| 33 ({{steady}})
+| 38 ({{increase}})11
+| mail 
+| [[Mail.Ru]]
+| {{flagu|Russia}}
+|-
+| scope="row" | [[SharePoint]]
+| [https://sharepoint.com sharepoint.com]
+| 34 ({{increase}})1
+| N/A
+| Computers Electronics and Technology - Other 
+| [[Microsoft]]
+| {{flagu|United States}}
+|-
+| scope="row" | [[Samsung]]
+| [https://samsung.com samsung.com]
+| 35 ({{increase}})1
+| 60 ({{decrease}})9
+| Consumer Electronics 
+| [[Samsung]]
+| {{flagu|South Korea}}
+|-
+| scope="row" | [[Fandom (website)|Fandom]]
+| [https://fandom.com fandom.com]
+| 36 ({{increase}})2
+| N/A
+| Arts and Entertainment - Other 
+| [[Fandom Inc.]]
+| {{flagu|United States}}
+|-
+| scope="row" | [[Grupo Globo|Globo]]
+| [https://globo.com globo.com]
+| 37 ({{steady}})
+| 45 ({{decrease}})2
+| News & Media Publishers 
+| [[Grupo Globo]]
+| {{flagu|Brazil}}
+|-
+| scope="row" | [[Canva]]
+| [https://canva.com canva.com]
+| 38 ({{increase}})3
+| 36 ({{increase}})6
+| Software 
+| [[Canva Pty Ltd]]
+| {{flagu|Australia}}
+|-
+| scope="row" | [[XNXX]]
+| xnxx.com
+| 39 ({{steady}})
+| 31 ({{decrease}})2
+| Adult 
+| [[XNXX]]
+| {{flagu|France}}
+|-
+| scope="row" | [[DuckDuckGo]]
+| [https://duckduckgo.com duckduckgo.com]
+| 40 ({{increase}})2
+| 16 ({{decrease}})1
+| Search Engines 
+| [[DuckDuckGo]]
+| {{flagu|United States}}
+|-
+| scope="row" | [[Telegram (software)|Telegram]]
+| [https://t.me t.me]
+| 42 ({{increase}})1
+| 51 ({{increase}})4
+| Computers Electronics and Technology - Other 
+| [[Telegram Messenger LLP]]
+| {{flagu|Russia}}
+|-
+| scope="row" | [[The Weather Channel |Weather]]
+| [https://weather.com weather.com]
+| 44 ({{decrease}})4
+| 25 ({{decrease}})5
+| Weather 
+| [[The Weather Channel]]
+| {{flagu|United States}}
+|-
+| scope="row" | [[Quora]]
+| [https://quora.com quora.com]
+| 45 ({{decrease}})1
+| 40 ({{decrease}})7
+| Dictionaries and Encyclopedias 
+| [[Quora]]
+| {{flagu|United States}}
+|-
+| scope="row" | [[Temu]]
+| [https://temu.com temu.com]
+| 46 ({{steady}})
+| 55 ({{increase}})2
+| Marketplace 
+| [[Temu]]
+| {{flagu|United States}}
+|-
+| scope="row" | [[CNN]]
+| [https://cnn.com cnn.com]
+| 47 ({{increase}})5
+| 43 ({{increase}})
+| News & Media Publishers 
+| [[CNN]]
+| {{flagu|United States}}
+|-
+| scope="row" | [[Zoom Video Communications|Zoom]]
+| [https://zoom.us zoom.us]
+| 48 ({{decrease}})3
+| 62 ({{decrease}})2
+| Computers Electronics and Technology - Other 
+| [[Zoom Video Communications]]
+| {{flagu|United States}}
+|-
+| scope="row" | [[Stripchat]]
+| stripchat.com
+| 49 ({{decrease}})1
+| N/A
+| Adult 
+| [[Stripchat]]
+| {{flagu|Cyprus}}
+|-
+| scope="row" | [[eBay]]
+| [https://ebay.com ebay.com]
+| 50 ({{increase}})1
+| 53 ({{increase}})
+| E commerce and Shopping > Marketplace 
+| [[eBay]]
+| {{flagu|United States}}
+|}
+
+{{portal|Internet|Lists}}
+
+== References ==
+{{reflist|group=lower-alpha}}
+
+{{DEFAULTSORT:Most-visited websites, List of}}
+[[Category:21st century-related lists]]
+[[Category:Lists of Internet-related superlatives]]
+[[Category:Lists of most popular media|Websites]]
+[[Category:Lists of websites]]
