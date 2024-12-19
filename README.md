@@ -32,8 +32,8 @@ This task is intended to investigate that for this type of tasks associative con
 - **src/**: kodo (.cpp) failai
 - **include/**: header (.h) failai
 - **data/**: tekstai ir kiti duomenys
-- **output/**: Rezultatai
-- **README.md**: Projekto aprašymas
+- **output/**: rezultatai
+- **README.md**: projekto aprašymas
 
 
 ## Naudojimas
