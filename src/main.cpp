@@ -14,16 +14,16 @@ int main()
             createDirectoryIfNotExists(outputDir);
 
             // User menu for choosing the operation
-            std::cout << "Choose an option:\n";
-            std::cout << "1. Count words\n";
-            std::cout << "2. Generate cross-reference table\n";
-            std::cout << "3. Count domain occurrences\n";
-            std::cout << "4. Extract and track internet domains\n";
+            std::cout << "Pasirinkite norima funkcija:\n";
+            std::cout << "1. Skaiciuoti zodzius tekste\n";
+            std::cout << "2. Generuoti cross-reference lentele zodziams\n";
+            std::cout << "3. Skaiciuoti domenus tekste\n";
+            std::cout << "4. Generuoti cross-reference lentele domenams\n";
             int choice;
             std::cin >> choice;
 
             // User menu for choosing the data file
-            std::cout << "Choose a data file:\n";
+            std::cout << "Pasirinkite teksto faila:\n";
             std::cout << "1. text_1.txt\n";
             std::cout << "2. text_2.txt\n";
             int fileChoice;
@@ -40,7 +40,7 @@ int main()
             }
             else
             {
-                std::cerr << "Invalid file choice!" << std::endl;
+                std::cerr << "Netinkamas failas!" << std::endl;
                 return 1;
             }
 
@@ -51,7 +51,7 @@ int main()
             std::ifstream inFile(filePath);
             if (!inFile)
             {
-                throw std::runtime_error("Cannot open input file: " + filePath.string());
+                throw std::runtime_error("Negalime atidaryti duomenu failo: " + filePath.string());
             }
 
             std::string content((std::istreambuf_iterator<char>(inFile)),
@@ -100,23 +100,23 @@ int main()
             }
             else
             {
-                std::cerr << "Invalid choice!" << std::endl;
+                std::cerr << "Netinkamas pasirinkimas!" << std::endl;
                 return 1;
             }
 
-            std::cout << "Processed: " << fileName << std::endl;
-            std::cout << "All files processed successfully!" << std::endl;
+            std::cout << "Atlikta: " << fileName << std::endl;
+            std::cout << "Visi failai apdoroti!" << std::endl;
         }
         catch (const std::exception &e)
         {
-            std::cerr << "Error: " << e.what() << std::endl;
+            std::cerr << "Klaida: " << e.what() << std::endl;
         }
 
         // Clear input buffer
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-        std::cout << "\nDo you want to continue? (y/n): ";
+        std::cout << "\nAr norite testi? (y/n): ";
         std::cin >> continueProgram;
 
     } while (tolower(continueProgram) == 'y');

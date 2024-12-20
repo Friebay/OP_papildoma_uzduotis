@@ -10,7 +10,6 @@
 #include <set>
 #include <regex>
 
-
 namespace fs = std::filesystem;
 
 // Function to create a directory if it doesn't exist
@@ -84,7 +83,7 @@ void countWords(const std::string &cleanedContent, const fs::path &outPath)
     std::ofstream outFile(outPath);
     if (!outFile)
     {
-        throw std::runtime_error("Cannot create output file: " + outPath.string());
+        throw std::runtime_error("Negalima sukurti isvesties failo: " + outPath.string());
     }
     for (const auto &[word, count] : sortedWords)
     {
@@ -99,7 +98,7 @@ void generateCrossReferenceTable(const std::map<std::string, std::vector<int>> &
     std::ofstream outFile(outPath);
     if (!outFile)
     {
-        throw std::runtime_error("Cannot create output file: " + outPath.string());
+        throw std::runtime_error("Negalima sukurti isvesties failo: " + outPath.string());
     }
 
     // Sort domains alphabetically for better readability
@@ -135,7 +134,7 @@ std::map<std::string, std::vector<int>> trackDomainOccurrences(const std::string
     std::string line;
     int lineNumber = 0;
 
-    std::cout << "Starting domain detection...\n\n";
+    std::cout << "Pradedama domenu paieska...\n";
 
     while (std::getline(stream, line))
     {
@@ -203,12 +202,16 @@ void countDomains(const std::map<std::string, std::vector<int>> &domainOccurrenc
     std::ofstream outFile(outPath);
     if (!outFile)
     {
-        throw std::runtime_error("Cannot create output file: " + outPath.string());
+        throw std::runtime_error("Negalima sukurti isvesties failo: " + outPath.string());
     }
     for (const auto &[domain, count] : sortedDomains)
     {
-        outFile << domain << ": " << count << std::endl;
+        if (count > 0)
+        {
+            {
+                outFile << domain << ": " << count << std::endl;
+            }
+        }
     }
     outFile.close();
 }
-
