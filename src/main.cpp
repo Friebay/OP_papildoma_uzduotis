@@ -24,19 +24,30 @@ int main()
 
             // User menu for choosing the data file
             std::cout << "Pasirinkite teksto faila:\n";
-            std::cout << "1. text_1.txt\n";
-            std::cout << "2. text_2.txt\n";
+            std::cout << "1. nuorodos_testavimui.txt\n";
+            std::cout << "2. papartynu_saule_90531_zodziai.txt\n";
+            std::cout << "3. tekstas_angliskas.txt\n";
+            std::cout << "4. tekstas_su_nuorodomis.txt\n";
+
             int fileChoice;
             std::cin >> fileChoice;
 
             std::string fileName;
             if (fileChoice == 1)
             {
-                fileName = "text_1.txt";
+                fileName = "nuorodos_testavimui.txt";
             }
             else if (fileChoice == 2)
             {
-                fileName = "text_2.txt";
+                fileName = "papartynu_saule_90531_zodziai.txt";
+            }
+            else if (fileChoice == 3)
+            {
+                fileName = "tekstas_angliskas.txt";
+            }
+            else if (fileChoice == 4)
+            {
+                fileName = "tekstas_su_nuorodomis.txt";
             }
             else
             {

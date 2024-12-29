@@ -87,7 +87,10 @@ void countWords(const std::string &cleanedContent, const fs::path &outPath)
     }
     for (const auto &[word, count] : sortedWords)
     {
-        outFile << word << ": " << count << std::endl;
+        if (count > 1)
+        {
+            outFile << word << ": " << count << std::endl;
+        }
     }
     outFile.close();
 }
