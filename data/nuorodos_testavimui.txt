@@ -361,3 +361,56 @@ magnet:?xt=urn:btih:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&dn=MyFile&tr=http:/
 <a href="javascript:alert('Hello!');">Click Me</a>
 
 https://github.com/Friebay/OP_papildoma_uzduotis
+
+Domains
+
+example.tech
+test.space
+demo.app
+sample.dev
+trial.codes
+project.ai
+learn.online
+website.blog
+file.systems
+photo.gallery
+
+URLs
+
+https://www.example.tech/products
+http://demo.space/landing
+https://api.test.app/v1/users
+https://learn.codes/courses/html-css
+http://image.gallery/photos/12345
+https://tools.online/checker
+http://secure.ai/authenticate
+https://updates.blog/2024/12/guide
+http://storage.systems/data/logs
+https://hub.dev/docs/setup
+
+Links
+
+<a href="https://www.example.tech/home">Visit Example Tech</a>
+<a href="http://trial.codes/signup">Sign Up for Trial</a>
+<a href="https://photo.gallery/featured">Explore the Gallery</a>
+<a href="http://test.space/join">Join Test Space</a>
+<a href="https://api.demo.app/docs">API Documentation</a>
+<a href="https://website.blog/posts/first">Read Our Blog</a>
+<a href="https://secure.ai/login">AI Secure Login</a>
+<a href="http://learn.online/certifications">Get Certified</a>
+<a href="https://project.ai/dashboard">Access Project AI</a>
+<a href="http://file.systems/upload">Upload Your Files</a>
+
+saitas.xyz
+https://www.vu.lt/, http://www.vu.lt
+www.vu.lt
+
+http://example.museum/exhibits/art
+https://weather.asia/forecast
+ftp://files.aero/downloads
+http://shop.coop/groceries
+https://website.int/resources
+http://company.jobs/careers
+http://travel.travel/destinations
+https://school.edu.ps/courses
+http://store.co.ck/products

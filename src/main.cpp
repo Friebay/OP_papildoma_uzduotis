@@ -19,6 +19,7 @@ int main()
             std::cout << "2. Generuoti cross-reference lentele zodziams\n";
             std::cout << "3. Skaiciuoti domenus tekste\n";
             std::cout << "4. Generuoti cross-reference lentele domenams\n";
+            std::cout << "5. Atlikti visas operacijas su pasirinktu failu\n";
             int choice;
             std::cin >> choice;
 
@@ -88,7 +89,7 @@ int main()
 
                 // Generate cross-reference table and write to output file
                 fs::path outPath = outputDir / ("xref_" + fileName);
-                generateCrossReferenceTable(wordOccurrences, outPath);
+                generateCrossReferenceTable(wordOccurrences, outPath, false);
             }
             else if (choice == 3 || choice == 4)
             { // Handle both domain options
@@ -97,7 +98,6 @@ int main()
 
                 if (choice == 3)
                 {
-
                     // Count domain occurrences
                     fs::path outPath = outputDir / ("domain_count_" + fileName);
                     countDomains(domainOccurrences, outPath);
@@ -106,8 +106,35 @@ int main()
                 {
                     // Generate cross-reference table for domains
                     fs::path outPath = outputDir / ("domain_xref_" + fileName);
-                    generateCrossReferenceTable(domainOccurrences, outPath);
+                    generateCrossReferenceTable(domainOccurrences, outPath, true);
                 }
+            }
+            else if (choice == 5)
+            {
+                // Remove punctuation from the content
+                std::string cleanedContent = removePunctuation(content);
+
+                // Count words and write to output file
+                fs::path wordCountPath = outputDir / ("word_count_" + fileName);
+                countWords(cleanedContent, wordCountPath);
+
+                // Track word occurrences
+                std::map<std::string, std::vector<int>> wordOccurrences = trackWordOccurrences(cleanedContent);
+
+                // Generate cross-reference table for words and write to output file
+                fs::path wordXrefPath = outputDir / ("xref_" + fileName);
+                generateCrossReferenceTable(wordOccurrences, wordXrefPath, false);
+
+                // Track domain occurrences without removing punctuation
+                std::map<std::string, std::vector<int>> domainOccurrences = trackDomainOccurrences(content);
+
+                // Count domain occurrences
+                fs::path domainCountPath = outputDir / ("domain_count_" + fileName);
+                countDomains(domainOccurrences, domainCountPath);
+
+                // Generate cross-reference table for domains
+                fs::path domainXrefPath = outputDir / ("domain_xref_" + fileName);
+                generateCrossReferenceTable(domainOccurrences, domainXrefPath, true);
             }
             else
             {

@@ -27,7 +27,7 @@ std::string removePunctuation(const std::string &text)
     std::string result;
     for (char c : text)
     {
-        if (!std::ispunct(c) || c == '\n')
+        if (!std::ispunct(c) && c != '–' || c == '\n')
         {
             result += c;
         }
@@ -94,9 +94,8 @@ void countWords(const std::string &cleanedContent, const fs::path &outPath)
     }
     outFile.close();
 }
-
 // Function to generate a cross-reference table and write it to an output file
-void generateCrossReferenceTable(const std::map<std::string, std::vector<int>> &wordOccurrences, const fs::path &outPath)
+void generateCrossReferenceTable(const std::map<std::string, std::vector<int>> &wordOccurrences, const fs::path &outPath, bool isURL = false)
 {
     std::ofstream outFile(outPath);
     if (!outFile)
@@ -104,22 +103,25 @@ void generateCrossReferenceTable(const std::map<std::string, std::vector<int>> &
         throw std::runtime_error("Negalima sukurti isvesties failo: " + outPath.string());
     }
 
-    // Sort domains alphabetically for better readability
+    // Sort entries alphabetically for better readability
     std::vector<std::pair<std::string, std::vector<int>>> sorted(wordOccurrences.begin(), wordOccurrences.end());
     std::sort(sorted.begin(), sorted.end());
 
     for (const auto &[word, lines] : sorted)
     {
-        outFile << word << ": ";
-        for (size_t i = 0; i < lines.size(); ++i)
+        if ((isURL && lines.size() > 0) || (!isURL && lines.size() > 1))
         {
-            outFile << lines[i];
-            if (i < lines.size() - 1)
+            outFile << word << ": ";
+            for (size_t i = 0; i < lines.size(); ++i)
             {
-                outFile << ", ";
+                outFile << lines[i];
+                if (i < lines.size() - 1)
+                {
+                    outFile << ", ";
+                }
             }
+            outFile << std::endl;
         }
-        outFile << std::endl;
     }
     outFile.close();
 }
@@ -129,9 +131,12 @@ std::map<std::string, std::vector<int>> trackDomainOccurrences(const std::string
 {
     std::map<std::string, std::vector<int>> domainOccurrences;
 
-    // Simplified regex pattern for testing
-    std::regex domainRegex(R"((?:https?://)?(?:www\.)?([a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*\.[a-zA-Z]{2,}))",
+    // Improved regex pattern to capture the entire address and validate domain part
+    std::regex domainRegex(R"((https?://(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(?:/[^\s"<>]*)?|(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(?:/[^\s"<>]*)?))",
                            std::regex::icase);
+
+    // Additional regex to check for invalid symbols
+    std::regex invalidSymbolsRegex(R"([{}\|\\\^\[\]`"])");
 
     std::istringstream stream(text);
     std::string line;
@@ -142,43 +147,28 @@ std::map<std::string, std::vector<int>> trackDomainOccurrences(const std::string
     while (std::getline(stream, line))
     {
         ++lineNumber;
-        // std::cout << "Processing line " << lineNumber << ":\n" << line << "\n";
 
         std::sregex_iterator begin(line.begin(), line.end(), domainRegex), end;
-
-        if (begin == end)
-        {
-            // std::cout << "No matches found in this line.\n";
-        }
 
         for (auto it = begin; it != end; ++it)
         {
             std::smatch match = *it;
             std::string fullMatch = match[0];
-            std::string domain = match[1];
 
-            /* std::cout << "Found match:\n";
-             std::cout << "  Full match: " << fullMatch << "\n";
-            std::cout << "  Domain: " << domain << "\n";
-            */
-
-            domainOccurrences[domain].push_back(lineNumber);
+            // Additional validation to ensure domain part does not start or end with a hyphen
+            // and does not contain invalid symbols
+            std::regex domainPartRegex(R"((https?://(?:[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*\.)+[a-zA-Z]{2,}(?:/[^\s"<>]*)?|(?:[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*\.)+[a-zA-Z]{2,}(?:/[^\s"<>]*)?))");
+            if (std::regex_match(fullMatch, domainPartRegex) && !std::regex_search(fullMatch, invalidSymbolsRegex))
+            {
+                domainOccurrences[fullMatch].push_back(lineNumber);
+            }
         }
-        // std::cout << "\n";
     }
-
-    /* std::cout << "\nFinal domain occurrences:\n";
-    for (const auto& [domain, lines] : domainOccurrences) {
-        std::cout << domain << ": ";
-        for (int line : lines) {
-            std::cout << line << " ";
-        }
-        std::cout << "\n";
-    }
-    */
 
     return domainOccurrences;
 }
+
+
 // Function to count domains and write the result to an output file
 void countDomains(const std::map<std::string, std::vector<int>> &domainOccurrences, const fs::path &outPath)
 {
