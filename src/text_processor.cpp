@@ -186,7 +186,6 @@ std::map<std::string, std::vector<int>> trackDomainOccurrences(const std::string
     std::string debugLine;
     int debugLineNum = 0;
 
-    // Existing regex patterns
     std::regex urlRegex(
         R"((https?:\/\/)?((www\.)?([a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}|localhost|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(:\d+)?(\/[a-zA-Z0-9\-._~:/?#\[\]@!$&'()*+,;=]*)?)",
         std::regex::icase);
@@ -195,7 +194,6 @@ std::map<std::string, std::vector<int>> trackDomainOccurrences(const std::string
         R"(\.(exe|txt|doc|png|docx|xls|xlsx|zip|rar|7z|tar|gz|bin|iso|dmg|apk|bat|cmd|css|dll|jar|js|msi|ps1|py|sh|sql|sys|vb|xml|pdf)$)",
         std::regex::icase);
 
-    // New dot check regex
     std::regex hasDotRegex(R"(\.)");
 
     std::istringstream stream(text);
