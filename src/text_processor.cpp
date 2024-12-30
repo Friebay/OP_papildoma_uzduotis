@@ -125,12 +125,29 @@ void generateCrossReferenceTable(const std::map<std::string, std::vector<int>> &
     }
     outFile.close();
 }
+#include <fstream>
+#include <set>
 
+// Function to read TLDs from a file
+std::set<std::string> readTLDs(const std::string &filePath)
+{
+    std::set<std::string> tlds;
+    std::ifstream file(filePath);
+    std::string line;
+    while (std::getline(file, line))
+    {
+        tlds.insert(line);
+    }
+    return tlds;
+}
 
 // Function to track domain occurrences and their line numbers in the text
 std::map<std::string, std::vector<int>> trackDomainOccurrences(const std::string &text)
 {
     std::map<std::string, std::vector<int>> domainOccurrences;
+
+    // Read TLDs from file
+    std::set<std::string> tlds = readTLDs("../data/tlds.txt");
 
     // Debug output for cleaned text
     std::istringstream debugStream(text);
@@ -162,7 +179,7 @@ std::map<std::string, std::vector<int>> trackDomainOccurrences(const std::string
         line.erase(line.find_last_not_of(" \t\n\r\f\v") + 1);
 
         // Debug output
-        std::cout << "Processing line " << lineNumber << ": [" << line << "]\n";
+        // std::cout << "Processing line " << lineNumber << ": [" << line << "]\n";
 
         std::sregex_iterator begin(line.begin(), line.end(), urlRegex), end;
 
@@ -184,8 +201,26 @@ std::map<std::string, std::vector<int>> trackDomainOccurrences(const std::string
             }
             else
             {
-                std::cout << "URL accepted: " << url << "\n";
-                domainOccurrences[url].push_back(lineNumber);
+                // Check if URL contains a valid TLD
+                bool hasValidTLD = false;
+                for (const auto &tld : tlds)
+                {
+                    if (url.find(tld) != std::string::npos)
+                    {
+                        hasValidTLD = true;
+                        break;
+                    }
+                }
+
+                if (hasValidTLD)
+                {
+                    std::cout << "URL accepted: " << url << "\n";
+                    domainOccurrences[url].push_back(lineNumber);
+                }
+                else
+                {
+                    std::cout << "URL rejected due to invalid TLD: " << url << "\n";
+                }
             }
         }
     }

@@ -415,3 +415,10 @@ http://travel.travel/destinations
 https://school.edu.ps/courses
 http://store.co.ck/products
 google.com
+
+http://exampleee
+https://exe.example.com/file.ex
+
+http://exampledot.com.
+https://exampleport.com:8080/path
+http://example.com/path/to/resource?query=param#fragment
