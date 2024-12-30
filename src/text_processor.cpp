@@ -125,21 +125,60 @@ void generateCrossReferenceTable(const std::map<std::string, std::vector<int>> &
     }
     outFile.close();
 }
-#include <fstream>
+
+#include <iostream>
+#include <filesystem>
 #include <set>
+#include <string>
+#include <fstream>
+#include <algorithm>
 
 // Function to read TLDs from a file
-std::set<std::string> readTLDs(const std::string &filePath)
+std::set<std::string> readTLDs(const std::string &relativeFilePath)
 {
     std::set<std::string> tlds;
-    std::ifstream file(filePath);
+    
+    // Get the current working directory
+    std::filesystem::path currentPath = std::filesystem::current_path();
+    
+    // Construct the full file path
+    std::filesystem::path fullPath = currentPath / relativeFilePath;
+    
+    // Debug output: print the current working directory
+    std::cout << "Current working directory: " << currentPath << "\n";
+    
+    // Debug output: print the file path being used
+    std::cout << "File path: " << fullPath << "\n";
+    
+    std::ifstream file(fullPath);
+    if (!file.is_open())
+    {
+        std::cerr << "Failed to open file: " << fullPath << "\n";
+        return tlds;
+    }
+    
     std::string line;
     while (std::getline(file, line))
     {
+        // Convert TLD to lowercase before inserting
+        std::transform(line.begin(), line.end(), line.begin(), ::tolower);
         tlds.insert(line);
     }
+
+    // Debug output: print the first 10 TLDs
+    /*std::cout << "First 10 TLDs read from file:\n";
+    int count = 0;
+    for (const auto &tld : tlds)
+    {
+        std::cout << tld << "\n";
+        if (++count >= 10)
+            break;
+    }
+    */
+
     return tlds;
 }
+
 
 // Function to track domain occurrences and their line numbers in the text
 std::map<std::string, std::vector<int>> trackDomainOccurrences(const std::string &text)
@@ -147,7 +186,7 @@ std::map<std::string, std::vector<int>> trackDomainOccurrences(const std::string
     std::map<std::string, std::vector<int>> domainOccurrences;
 
     // Read TLDs from file
-    std::set<std::string> tlds = readTLDs("../data/tlds.txt");
+    std::set<std::string> tlds = readTLDs("data/tlds.txt");
 
     // Debug output for cleaned text
     std::istringstream debugStream(text);
@@ -160,7 +199,7 @@ std::map<std::string, std::vector<int>> trackDomainOccurrences(const std::string
         std::regex::icase);
 
     std::regex fileExtensionRegex(
-        R"(\.(exe|txt|doc|docx|xls|xlsx|zip|rar|7z|tar|gz|bin|iso|dmg|apk|bat|cmd|css|dll|jar|js|msi|ps1|py|sh|sql|sys|vb|xml|pdf)$)",
+        R"(\.(exe|txt|doc|png|docx|xls|xlsx|zip|rar|7z|tar|gz|bin|iso|dmg|apk|bat|cmd|css|dll|jar|js|msi|ps1|py|sh|sql|sys|vb|xml|pdf)$)",
         std::regex::icase);
 
     // New dot check regex
@@ -188,6 +227,10 @@ std::map<std::string, std::vector<int>> trackDomainOccurrences(const std::string
             std::smatch match = *it;
             std::string url = match[0];
 
+            // Trim whitespace around the URL
+            url.erase(0, url.find_first_not_of(" \t\n\r\f\v"));
+            url.erase(url.find_last_not_of(" \t\n\r\f\v") + 1);
+
             // Debug output
             std::cout << "Found potential URL: " << url << "\n";
 
@@ -201,11 +244,14 @@ std::map<std::string, std::vector<int>> trackDomainOccurrences(const std::string
             }
             else
             {
-                // Check if URL contains a valid TLD
+                // Check if URL contains a valid TLD (case-insensitive)
                 bool hasValidTLD = false;
+                std::string lowerUrl = url;
+                std::transform(lowerUrl.begin(), lowerUrl.end(), lowerUrl.begin(), ::tolower);
+
                 for (const auto &tld : tlds)
                 {
-                    if (url.find(tld) != std::string::npos)
+                    if (lowerUrl.find(tld) != std::string::npos)
                     {
                         hasValidTLD = true;
                         break;
