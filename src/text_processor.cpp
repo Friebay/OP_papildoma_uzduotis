@@ -126,7 +126,6 @@ void generateCrossReferenceTable(const std::map<std::string, std::vector<int>> &
     outFile.close();
 }
 
-// Function to extract domains and track their occurrences in the text
 std::map<std::string, std::vector<int>> trackDomainOccurrences(const std::string &text)
 {
     std::map<std::string, std::vector<int>> domainOccurrences;
@@ -137,6 +136,10 @@ std::map<std::string, std::vector<int>> trackDomainOccurrences(const std::string
 
     // Additional regex to check for invalid symbols
     std::regex invalidSymbolsRegex(R"([{}\|\\\^\[\]`"])");
+
+    // New regex to check for common file extensions
+    std::regex fileExtensionRegex(R"(\.(exe|txt|php|html|htm|pdf|doc|docx|xls|xlsx|zip|rar|7z|tar|gz|bin|iso|dmg|apk|app|bat|cmd|com|css|dll|jar|js|msi|ps1|py|sh|sql|sys|vb|xml)$)", 
+                                 std::regex::icase);
 
     std::istringstream stream(text);
     std::string line;
@@ -156,9 +159,12 @@ std::map<std::string, std::vector<int>> trackDomainOccurrences(const std::string
             std::string fullMatch = match[0];
 
             // Additional validation to ensure domain part does not start or end with a hyphen
-            // and does not contain invalid symbols
             std::regex domainPartRegex(R"((https?://(?:[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*\.)+[a-zA-Z]{2,}(?:/[^\s"<>]*)?|(?:[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*\.)+[a-zA-Z]{2,}(?:/[^\s"<>]*)?))");
-            if (std::regex_match(fullMatch, domainPartRegex) && !std::regex_search(fullMatch, invalidSymbolsRegex))
+            
+            // Only store if it passes all validation checks
+            if (std::regex_match(fullMatch, domainPartRegex) && 
+                !std::regex_search(fullMatch, invalidSymbolsRegex) &&
+                !std::regex_search(fullMatch, fileExtensionRegex))
             {
                 domainOccurrences[fullMatch].push_back(lineNumber);
             }
