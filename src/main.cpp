@@ -143,7 +143,7 @@ int main()
             }
 
             std::cout << "Atlikta: " << fileName << std::endl;
-            std::cout << "Apdorota!" << std::endl;
+            std::cout << "Apdorota! Informacija issaugota i 'output' aplankala." << std::endl;
         }
         catch (const std::exception &e)
         {
