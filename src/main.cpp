@@ -76,7 +76,7 @@ int main()
                 std::string cleanedContent = removePunctuation(content);
 
                 // Count words and write to output file
-                fs::path outPath = outputDir / ("word_count_" + fileName);
+                fs::path outPath = outputDir / ("zodziu_skaicius_" + fileName);
                 countWords(cleanedContent, outPath);
             }
             else if (choice == 2)
@@ -88,7 +88,7 @@ int main()
                 std::map<std::string, std::vector<int>> wordOccurrences = trackWordOccurrences(cleanedContent);
 
                 // Generate cross-reference table and write to output file
-                fs::path outPath = outputDir / ("xref_" + fileName);
+                fs::path outPath = outputDir / ("cross_reference_" + fileName);
                 generateCrossReferenceTable(wordOccurrences, outPath, false);
             }
             else if (choice == 3 || choice == 4)
@@ -99,13 +99,13 @@ int main()
                 if (choice == 3)
                 {
                     // Count domain occurrences
-                    fs::path outPath = outputDir / ("domain_count_" + fileName);
+                    fs::path outPath = outputDir / ("URL_skaicius_" + fileName);
                     countDomains(domainOccurrences, outPath);
                 }
                 else
                 {
                     // Generate cross-reference table for domains
-                    fs::path outPath = outputDir / ("domain_xref_" + fileName);
+                    fs::path outPath = outputDir / ("domain_cross_reference_" + fileName);
                     generateCrossReferenceTable(domainOccurrences, outPath, true);
                 }
             }
@@ -115,25 +115,25 @@ int main()
                 std::string cleanedContent = removePunctuation(content);
 
                 // Count words and write to output file
-                fs::path wordCountPath = outputDir / ("word_count_" + fileName);
+                fs::path wordCountPath = outputDir / ("zodziu_skaicius_" + fileName);
                 countWords(cleanedContent, wordCountPath);
 
                 // Track word occurrences
                 std::map<std::string, std::vector<int>> wordOccurrences = trackWordOccurrences(cleanedContent);
 
                 // Generate cross-reference table for words and write to output file
-                fs::path wordXrefPath = outputDir / ("xref_" + fileName);
+                fs::path wordXrefPath = outputDir / ("cross_reference_" + fileName);
                 generateCrossReferenceTable(wordOccurrences, wordXrefPath, false);
 
                 // Track domain occurrences without removing punctuation
                 std::map<std::string, std::vector<int>> domainOccurrences = trackDomainOccurrences(content);
 
                 // Count domain occurrences
-                fs::path domainCountPath = outputDir / ("domain_count_" + fileName);
+                fs::path domainCountPath = outputDir / ("URL_skaicius_" + fileName);
                 countDomains(domainOccurrences, domainCountPath);
 
                 // Generate cross-reference table for domains
-                fs::path domainXrefPath = outputDir / ("domain_xref_" + fileName);
+                fs::path domainXrefPath = outputDir / ("URL_cross_reference_" + fileName);
                 generateCrossReferenceTable(domainOccurrences, domainXrefPath, true);
             }
             else
@@ -143,7 +143,7 @@ int main()
             }
 
             std::cout << "Atlikta: " << fileName << std::endl;
-            std::cout << "Visi failai apdoroti!" << std::endl;
+            std::cout << "Apdorota!" << std::endl;
         }
         catch (const std::exception &e)
         {
@@ -154,10 +154,10 @@ int main()
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-        std::cout << "\nAr norite testi? (y/n): ";
+        std::cout << "\nAr norite testi? (t/n): ";
         std::cin >> continueProgram;
 
-    } while (tolower(continueProgram) == 'y');
+    } while (tolower(continueProgram) == 't');
 
     return 0;
 }

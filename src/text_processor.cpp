@@ -126,13 +126,6 @@ void generateCrossReferenceTable(const std::map<std::string, std::vector<int>> &
     outFile.close();
 }
 
-#include <iostream>
-#include <filesystem>
-#include <set>
-#include <string>
-#include <fstream>
-#include <algorithm>
-
 // Function to read TLDs from a file
 std::set<std::string> readTLDs(const std::string &relativeFilePath)
 {
@@ -145,15 +138,15 @@ std::set<std::string> readTLDs(const std::string &relativeFilePath)
     std::filesystem::path fullPath = currentPath / relativeFilePath;
     
     // Debug output: print the current working directory
-    std::cout << "Current working directory: " << currentPath << "\n";
+    // std::cout << "Current working directory: " << currentPath << "\n";
     
     // Debug output: print the file path being used
-    std::cout << "File path: " << fullPath << "\n";
+    // std::cout << "File path: " << fullPath << "\n";
     
     std::ifstream file(fullPath);
     if (!file.is_open())
     {
-        std::cerr << "Failed to open file: " << fullPath << "\n";
+        std::cerr << "Nepavyko atidaryti failo: " << fullPath << "\n";
         return tlds;
     }
     
@@ -232,15 +225,15 @@ std::map<std::string, std::vector<int>> trackDomainOccurrences(const std::string
             url.erase(url.find_last_not_of(" \t\n\r\f\v") + 1);
 
             // Debug output
-            std::cout << "Found potential URL: " << url << "\n";
+            std::cout << "Radome potencialu URL: " << url << "\n";
 
             if (std::regex_search(url, fileExtensionRegex))
             {
-                std::cout << "URL rejected due to file extension: " << url << "\n";
+                std::cout << "URL atmestas del failo pletinio: " << url << "\n";
             }
             else if (!std::regex_search(url, hasDotRegex))
             {
-                std::cout << "URL rejected due to missing dot: " << url << "\n";
+                std::cout << "URL atmestas, nes turi tasko: " << url << "\n";
             }
             else
             {
@@ -260,12 +253,12 @@ std::map<std::string, std::vector<int>> trackDomainOccurrences(const std::string
 
                 if (hasValidTLD)
                 {
-                    std::cout << "URL accepted: " << url << "\n";
+                    std::cout << "URL priimtas: " << url << "\n";
                     domainOccurrences[url].push_back(lineNumber);
                 }
                 else
                 {
-                    std::cout << "URL rejected due to invalid TLD: " << url << "\n";
+                    std::cout << "URL atmestas del neteisingo TLD: " << url << "\n";
                 }
             }
         }
