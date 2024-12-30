@@ -1,126 +1,126 @@
 # Common websites
 
-"https://www.google.com",
+https://www.google.com ,
 
-"http://www.example.com",
+http://www.example.com ,
 
-"https://www.wikipedia.org",
+https://www.wikipedia.org ,
 
 
 
 # FTP and non-HTTP protocols
 
-"ftp://ftp.example.com/resource",
+ftp://ftp.example.com/resource ,
 
-"mailto:someone@example.com",
+mailto:someone@example.com ,
 
-"tel:+1234567890",
+tel:+1234567890 ,
 
 
 
 # IP addresses
 
-"http://192.168.1.1",
+http://192.168.1.1 ,
 
-"https://127.0.0.1:8000",
+https://127.0.0.1:8000 ,
 
 
 
 # Localhost links
 
-"http://localhost:3000",
+http://localhost:3000 ,
 
-"https://localhost/dashboard",
+https://localhost/dashboard ,
 
 
 
 # Query parameters and fragments
 
-"https://www.example.com/search?q=test",
+https://www.example.com/search?q=test ,
 
-"https://www.example.com/page#section",
+https://www.example.com/page#section ,
 
 
 
 # Subdomains
 
-"https://blog.example.com",
+https://blog.example.com ,
 
-"https://shop.example.com/products?id=123",
+https://shop.example.com/products?id=123 ,
 
 
 
 # Unusual TLDs
 
-"https://www.example.tech",
+https://www.example.tech ,
 
-"https://www.example.photography",
+https://www.example.photography ,
 
 
 
 # Shortened URLs
 
-"https://bit.ly/3example",
+https://bit.ly/3example ,
 
-"https://t.co/abc123",
+https://t.co/abc123 ,
 
 
 
 # Links with ports
 
-"http://example.com:8080",
+http://example.com:8080 ,
 
-"https://example.com:8443/path",
+https://example.com:8443/path ,
 
 
 
 # Internationalized Domain Names (IDN)
 
-"http://xn--fsq.com",  # punycode for an IDN
+http://xn--fsq.com ,  # punycode for an IDN
 
-"https://例子.测试",
+https://例子.测试 ,
 
 
 
 # Mixed case URLs
 
-"HTTP://WWW.EXAMPLE.COM",
+HTTP://WWW.EXAMPLE.COM ,
 
-"Https://www.Example.com/MixedCase",
+Https://www.Example.com/MixedCase ,
 
 
 
 # Non-standard paths
 
-"https://www.example.com/~user/home",
+https://www.example.com/~user/home ,
 
-"https://www.example.com/@username/posts",
+https://www.example.com/@username/posts ,
 
 
 
 # Links with unusual characters
 
-"https://www.example.com/!@#$%^&*()_+",
+https://www.example.com/!@#$%^&*()_+ ,
 
-"https://www.example.com/path/with spaces",
+https://www.example.com/path/with spaces ,
 
 
 
 # Relative URLs (edge cases)
 
-"/relative-path",
+/relative-path ,
 
-"./another-relative",
+./another-relative ,
 
-"../up-one-level",
+../up-one-level ,
 
 
 
 # Others
 
-"https://api.example.com/v1/resources?key=value",
+https://api.example.com/v1/resources?key=value ,
 
-"https://cdn.example.com/assets/main.css",
+https://cdn.example.com/assets/main.css ,
 
 # Various URL formats for testing
 
@@ -155,7 +155,7 @@ https://api.example.com:8443/v1/endpoint
 ## URLs in different contexts
 Check out our website: https://example.com!
 Contact us at support@example.com or visit http://help.example.com
-<a href="https://example.com">Click here</a>
+<a href=https://example.com>Click here</a>
 [Our Website](https://example.com)
 
 ## Relative URLs
@@ -208,79 +208,79 @@ https://example.com:80//:80
 
 # Missing protocol
 
-"www.example.com",
+www.example.com ,
 
-"example.com/page",
+example.com/page ,
 
 
 
 # Invalid protocol
 
-"htp://badprotocol.com",
+htp://badprotocol.com ,
 
-"htt://missingletter.com",
+htt://missingletter.com ,
 
 
 
 # Incomplete URLs
 
-"http://",
+http:// ,
 
-"https://",
+https:// ,
 
-"http://.com",
+http://.com ,
 
-"https:///path-only",
+https:///path-only ,
 
 
 
 # Invalid domain formats
 
-"http://-example.com",  # Leading hyphen in domain
+http://-example.com ,  # Leading hyphen in domain
 
-"http://example..com",  # Double dot in domain
+http://example..com ,  # Double dot in domain
 
-"http://.example.com",  # Leading dot
+http://.example.com ,  # Leading dot
 
-"http://example",       # Missing TLD
+http://example ,       # Missing TLD
 
 
 
 # Invalid characters in domain
 
-"http://exa$mple.com",
+http://exa$mple.com ,
 
-"http://example!.com",
+http://example!.com ,
 
-"http://example..com",
+http://example..com ,
 
 
 
 # Invalid paths and queries
 
-"http://example.com/<>",
+http://example.com/<> ,
 
-"http://example.com/path with spaces",
+http://example.com/path with spaces ,
 
-"http://example.com/{}|\\^[]`",
+http://example.com/{}|\\^[]` ,
 
 
 
 # URLs that are too short
 
-"ht:/",
+ht:/ ,
 
-"h://",
+h:// ,
 
 
 
 # Others
 
-"://missingstart.com",
+://missingstart.com ,
 
-"example..com/page",
+example..com/page ,
 
-"http://.com",
+http://.com ,
 
 This is a test file for link finding. It includes various kinds of links.
 
@@ -298,7 +298,7 @@ http://example.org/product?id=123&category=books
 https://www.example.com/page#section1
 http://example.net/document.html#subsection2
 
-# URLs with user info (less common, but should be handled)
+# URLs with user info (less common , but should be handled)
 ftp://user:password@ftp.example.com
 https://user@example.com
 
@@ -314,7 +314,7 @@ https://example.org/data%2Ffile.txt
 Check out this link: https://www.wikipedia.org
 Or this one in parentheses: (https://www.w3.org)
 Or this one with punctuation: https://www.mozilla.org.
-And even this one: "https://www.python.org"
+And even this one: https://www.python.org
 
 # URLs with different top-level domains (TLDs)
 https://example.co.uk
@@ -327,7 +327,7 @@ htp://www.example.com (typo)
 www.example.com (missing protocol)
 example.com (missing protocol)
 https://example.com/path space (space in path)
-<a href="https://www.test.com">Link</a> (HTML tag - should extract the URL)
+<a href=https://www.test.com>Link</a> (HTML tag - should extract the URL)
 
 # IP Addresses
 http://172.217.160.142
@@ -348,17 +348,17 @@ This line has a url and some other stuff https://www.google.com and then more te
 https://www.reallylongdomainnameforexamplepurposesonly.com/path/to/a/very/long/page/with/lots/of/directories/and/subdirectories/and/even/more/stuff/at/the/end?param1=value1&param2=value2&param3=value3
 
 # URL inside a sentence.
-This is a sentence with a URL inside it, like this: https://www.example.net/page123 and then the sentence continues.
+This is a sentence with a URL inside it , like this: https://www.example.net/page123 and then the sentence continues.
 
 # URL at the end of a line with no space after it.
 This is a line with a URL at the end: https://www.example.com
 
-<a href="mailto:info@example.com">Contact Us</a>
+<a href=mailto:info@example.com>Contact Us</a>
 mailto:support@website.net?subject=Inquiry&body=Hello
 tel:123-456-7890
-geo:0,0?q=Eiffel+Tower
+geo:0 ,0?q=Eiffel+Tower
 magnet:?xt=urn:btih:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&dn=MyFile&tr=http://example.com/tracker
-<a href="javascript:alert('Hello!');">Click Me</a>
+<a href=javascript:alert('Hello!');>Click Me</a>
 
 https://github.com/Friebay/OP_papildoma_uzduotis
 
@@ -390,19 +390,19 @@ https://hub.dev/docs/setup
 
 Links
 
-<a href="https://www.example.tech/home">Visit Example Tech</a>
-<a href="http://trial.codes/signup">Sign Up for Trial</a>
-<a href="https://photo.gallery/featured">Explore the Gallery</a>
-<a href="http://test.space/join">Join Test Space</a>
-<a href="https://api.demo.app/docs">API Documentation</a>
-<a href="https://website.blog/posts/first">Read Our Blog</a>
-<a href="https://secure.ai/login">AI Secure Login</a>
-<a href="http://learn.online/certifications">Get Certified</a>
-<a href="https://project.ai/dashboard">Access Project AI</a>
-<a href="http://file.systems/upload">Upload Your Files</a>
+<a href=https://www.example.tech/home>Visit Example Tech</a>
+<a href=http://trial.codes/signup>Sign Up for Trial</a>
+<a href=https://photo.gallery/featured>Explore the Gallery</a>
+<a href=http://test.space/join>Join Test Space</a>
+<a href=https://api.demo.app/docs>API Documentation</a>
+<a href=https://website.blog/posts/first>Read Our Blog</a>
+<a href=https://secure.ai/login>AI Secure Login</a>
+<a href=http://learn.online/certifications>Get Certified</a>
+<a href=https://project.ai/dashboard>Access Project AI</a>
+<a href=http://file.systems/upload>Upload Your Files</a>
 
 saitas.xyz
-https://www.vu.lt/, http://www.vu.lt
+https://www.vu.lt/ , http://www.vu.lt
 www.vu.lt
 
 http://example.museum/exhibits/art
@@ -414,3 +414,4 @@ http://company.jobs/careers
 http://travel.travel/destinations
 https://school.edu.ps/courses
 http://store.co.ck/products
+google.com

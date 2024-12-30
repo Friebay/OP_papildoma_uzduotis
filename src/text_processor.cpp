@@ -126,54 +126,72 @@ void generateCrossReferenceTable(const std::map<std::string, std::vector<int>> &
     outFile.close();
 }
 
+
+// Function to track domain occurrences and their line numbers in the text
 std::map<std::string, std::vector<int>> trackDomainOccurrences(const std::string &text)
 {
     std::map<std::string, std::vector<int>> domainOccurrences;
 
-    // Improved regex pattern to capture the entire address and validate domain part
-    std::regex domainRegex(R"((https?://(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(?:/[^\s"<>]*)?|(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(?:/[^\s"<>]*)?))",
-                           std::regex::icase);
+    // Debug output for cleaned text
+    std::istringstream debugStream(text);
+    std::string debugLine;
+    int debugLineNum = 0;
 
-    // Additional regex to check for invalid symbols
-    std::regex invalidSymbolsRegex(R"([{}\|\\\^\[\]`"])");
+    // Existing regex patterns
+    std::regex urlRegex(
+        R"((https?:\/\/)?((www\.)?([a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}|localhost|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(:\d+)?(\/[a-zA-Z0-9\-._~:/?#\[\]@!$&'()*+,;=]*)?)",
+        std::regex::icase);
 
-    // New regex to check for common file extensions
-    std::regex fileExtensionRegex(R"(\.(exe|txt|php|html|htm|pdf|doc|docx|xls|xlsx|zip|rar|7z|tar|gz|bin|iso|dmg|apk|app|bat|cmd|com|css|dll|jar|js|msi|ps1|py|sh|sql|sys|vb|xml)$)", 
-                                 std::regex::icase);
+    std::regex fileExtensionRegex(
+        R"(\.(exe|txt|doc|docx|xls|xlsx|zip|rar|7z|tar|gz|bin|iso|dmg|apk|bat|cmd|css|dll|jar|js|msi|ps1|py|sh|sql|sys|vb|xml|pdf)$)",
+        std::regex::icase);
+
+    // New dot check regex
+    std::regex hasDotRegex(R"(\.)");
 
     std::istringstream stream(text);
     std::string line;
     int lineNumber = 0;
 
-    std::cout << "Pradedama domenu paieska...\n";
-
     while (std::getline(stream, line))
     {
         ++lineNumber;
 
-        std::sregex_iterator begin(line.begin(), line.end(), domainRegex), end;
+        // Trim whitespace
+        line.erase(0, line.find_first_not_of(" \t\n\r\f\v"));
+        line.erase(line.find_last_not_of(" \t\n\r\f\v") + 1);
+
+        // Debug output
+        std::cout << "Processing line " << lineNumber << ": [" << line << "]\n";
+
+        std::sregex_iterator begin(line.begin(), line.end(), urlRegex), end;
 
         for (auto it = begin; it != end; ++it)
         {
             std::smatch match = *it;
-            std::string fullMatch = match[0];
+            std::string url = match[0];
 
-            // Additional validation to ensure domain part does not start or end with a hyphen
-            std::regex domainPartRegex(R"((https?://(?:[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*\.)+[a-zA-Z]{2,}(?:/[^\s"<>]*)?|(?:[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*\.)+[a-zA-Z]{2,}(?:/[^\s"<>]*)?))");
-            
-            // Only store if it passes all validation checks
-            if (std::regex_match(fullMatch, domainPartRegex) && 
-                !std::regex_search(fullMatch, invalidSymbolsRegex) &&
-                !std::regex_search(fullMatch, fileExtensionRegex))
+            // Debug output
+            std::cout << "Found potential URL: " << url << "\n";
+
+            if (std::regex_search(url, fileExtensionRegex))
             {
-                domainOccurrences[fullMatch].push_back(lineNumber);
+                std::cout << "URL rejected due to file extension: " << url << "\n";
+            }
+            else if (!std::regex_search(url, hasDotRegex))
+            {
+                std::cout << "URL rejected due to missing dot: " << url << "\n";
+            }
+            else
+            {
+                std::cout << "URL accepted: " << url << "\n";
+                domainOccurrences[url].push_back(lineNumber);
             }
         }
     }
 
     return domainOccurrences;
 }
-
 
 // Function to count domains and write the result to an output file
 void countDomains(const std::map<std::string, std::vector<int>> &domainOccurrences, const fs::path &outPath)
