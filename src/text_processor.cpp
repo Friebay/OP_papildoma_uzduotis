@@ -1,14 +1,4 @@
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <filesystem>
-#include <cctype>
-#include <map>
-#include <vector>
-#include <algorithm>
-#include <sstream>
-#include <set>
-#include <regex>
+#include "../include/text_processor.h"
 
 namespace fs = std::filesystem;
 
@@ -70,6 +60,7 @@ void countWords(const std::string &cleanedContent, const fs::path &outPath)
     std::map<std::string, int> wordCount;
     std::istringstream stream(cleanedContent);
     std::string word;
+
     while (stream >> word)
     {
         word = toLowerCase(word);
@@ -130,26 +121,26 @@ void generateCrossReferenceTable(const std::map<std::string, std::vector<int>> &
 std::set<std::string> readTLDs(const std::string &relativeFilePath)
 {
     std::set<std::string> tlds;
-    
+
     // Get the current working directory
     std::filesystem::path currentPath = std::filesystem::current_path();
-    
+
     // Construct the full file path
     std::filesystem::path fullPath = currentPath / relativeFilePath;
-    
+
     // Debug output: print the current working directory
     // std::cout << "Current working directory: " << currentPath << "\n";
-    
+
     // Debug output: print the file path being used
     // std::cout << "File path: " << fullPath << "\n";
-    
+
     std::ifstream file(fullPath);
     if (!file.is_open())
     {
         std::cerr << "Nepavyko atidaryti failo: " << fullPath << "\n";
         return tlds;
     }
-    
+
     std::string line;
     while (std::getline(file, line))
     {
@@ -172,7 +163,6 @@ std::set<std::string> readTLDs(const std::string &relativeFilePath)
     return tlds;
 }
 
-
 // Function to track domain occurrences and their line numbers in the text
 std::map<std::string, std::vector<int>> trackDomainOccurrences(const std::string &text)
 {
@@ -181,17 +171,12 @@ std::map<std::string, std::vector<int>> trackDomainOccurrences(const std::string
     // Read TLDs from file
     std::set<std::string> tlds = readTLDs("data/tlds.txt");
 
-    // Debug output for cleaned text
-    std::istringstream debugStream(text);
-    std::string debugLine;
-    int debugLineNum = 0;
-
     std::regex urlRegex(
         R"((https?:\/\/)?((www\.)?([a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}|localhost|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(:\d+)?(\/[a-zA-Z0-9\-._~:/?#\[\]@!$&'()*+,;=]*)?)",
         std::regex::icase);
 
     std::regex fileExtensionRegex(
-        R"(\.(exe|txt|doc|png|docx|xls|xlsx|zip|rar|7z|tar|gz|bin|iso|dmg|apk|bat|cmd|css|dll|jar|js|msi|ps1|py|sh|sql|sys|vb|xml|pdf)$)",
+        R"(\.(exe|txt|doc|png|docx|xls|xlsx|zip|rar|7z|tar|gz|bin|iso|dmg|jpeg|apk|bat|cmd|css|dll|jar|js|msi|ps1|py|sh|sql|sys|vb|xml|pdf)$)",
         std::regex::icase);
 
     std::regex hasDotRegex(R"(\.)");
@@ -231,7 +216,7 @@ std::map<std::string, std::vector<int>> trackDomainOccurrences(const std::string
             }
             else if (!std::regex_search(url, hasDotRegex))
             {
-                std::cout << "URL atmestas, nes turi tasko: " << url << "\n";
+                std::cout << "URL atmestas, nes neturi tasko: " << url << "\n";
             }
             else
             {
@@ -301,6 +286,35 @@ void countDomains(const std::map<std::string, std::vector<int>> &domainOccurrenc
                 outFile << domain << ": " << count << std::endl;
             }
         }
+    }
+    outFile.close();
+}
+
+void findWordsWithSto(const std::string &cleanedContent, const fs::path &outPath)
+{
+    std::set<std::string> wordsWithSto;
+    std::istringstream stream(cleanedContent);
+    std::string word;
+
+    while (stream >> word)
+    {
+        // Remove punctuation from the word
+        word = removePunctuation(word);
+        word = toLowerCase(word);
+        if (word.find("sto") != std::string::npos)
+        {
+            wordsWithSto.insert(word);
+        }
+    }
+
+    std::ofstream outFile(outPath);
+    if (!outFile)
+    {
+        throw std::runtime_error("Negalima sukurti isvesties failo: " + outPath.string());
+    }
+    for (const auto &word : wordsWithSto)
+    {
+        outFile << word << std::endl;
     }
     outFile.close();
 }

@@ -20,6 +20,7 @@ int main()
             std::cout << "3. Skaiciuoti domenus tekste\n";
             std::cout << "4. Generuoti cross-reference lentele domenams\n";
             std::cout << "5. Atlikti visas operacijas su pasirinktu failu\n";
+            std::cout << "6. Rasti zodzius su 'sto'\n";
             int choice;
             std::cin >> choice;
 
@@ -90,6 +91,14 @@ int main()
                 // Generate cross-reference table and write to output file
                 fs::path outPath = outputDir / ("cross_reference_" + fileName);
                 generateCrossReferenceTable(wordOccurrences, outPath, false);
+            }
+            else if (choice == 6)
+            {
+                // Generate cross-reference table and write to output file
+                fs::path outPath = outputDir / ("words_with_sto_" + fileName);
+
+                // Save the unique words with 'sto' to the output file
+                findWordsWithSto(content, outPath);
             }
             else if (choice == 3 || choice == 4)
             { // Handle both domain options
